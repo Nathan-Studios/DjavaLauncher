@@ -26,30 +26,13 @@
 
 </div>
 
-<table align="center">
-<tr>
-<td align="center" width="25%">
-<br>
-<b>🚀 Latest Build</b><br>
-<sub>v2.10 Dynamic</sub>
-</td>
-<td align="center" width="25%">
-<br>
-<b>📱 Min SDK</b><br>
-<sub>Android 8.0+</sub>
-</td>
-<td align="center" width="25%">
-<br>
-<b>🌐 ABI Support</b><br>
-<sub>arm64-v8a + armeabi-v7a</sub>
-</td>
-<td align="center" width="25%">
-<br>
-<b>⚡ Native Core</b><br>
-<sub>C++20 · Shadowhook</sub>
-</td>
-</tr>
-</table>
+<p align="center">
+  <img src="https://img.shields.io/badge/Latest_Build-v2.10_Dynamic-FF6F00?style=for-the-badge&logo=github&logoColor=white">
+  <img src="https://img.shields.io/badge/Min_SDK-Android_8.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white">
+  <br>
+  <img src="https://img.shields.io/badge/ABI-arm64--v8a_%7C_armeabi--v7a-1565C0?style=for-the-badge&logo=arm&logoColor=white">
+  <img src="https://img.shields.io/badge/Native_Core-C%2B%2B20_·_Shadowhook-00C853?style=for-the-badge&logo=cplusplus&logoColor=white">
+</p>
 
 <br>
 
