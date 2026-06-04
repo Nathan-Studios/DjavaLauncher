@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" width="48">
+  <img src="https://i.ibb.co/XN7Q9Tm/image-removebg-preview.png" width="180" alt="DjavaLauncher">
 </p>
 
 <h1 align="center">🚀 DjavaLauncher — Download Center</h1>
@@ -29,23 +29,23 @@
 <table align="center">
 <tr>
 <td align="center" width="25%">
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Rocket.png" width="40"><br>
-<b>Latest Build</b><br>
+<br>
+<b>🚀 Latest Build</b><br>
 <sub>v2.10 Dynamic</sub>
 </td>
 <td align="center" width="25%">
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Android%20Studio.png" width="40"><br>
-<b>Min SDK</b><br>
+<br>
+<b>📱 Min SDK</b><br>
 <sub>Android 8.0+</sub>
 </td>
 <td align="center" width="25%">
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Globe%20with%20Meridians.png" width="40"><br>
-<b>ABI Support</b><br>
+<br>
+<b>🌐 ABI Support</b><br>
 <sub>arm64-v8a + armeabi-v7a</sub>
 </td>
 <td align="center" width="25%">
-<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Fire.png" width="40"><br>
-<b>Native Core</b><br>
+<br>
+<b>⚡ Native Core</b><br>
 <sub>C++20 · Shadowhook</sub>
 </td>
 </tr>
