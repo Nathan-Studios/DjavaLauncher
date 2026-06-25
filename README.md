@@ -1,425 +1,856 @@
-<p align="center">
-  <img src="https://i.ibb.co/XN7Q9Tm/image-removebg-preview.png" width="180" alt="DjavaLauncher">
-</p>
+# DjavaLauncher 2.0 — Complete Technical Reference
 
-<h1 align="center">🚀 DjavaLauncher — Download Center</h1>
-
-### *Advanced SA:MP Mobile Client — Release Distribution Hub*
-
-<br>
-
-[![Version](https://img.shields.io/github/v/release/Nathan-Studios/DjavaLauncher?style=for-the-badge&logo=github&color=%23FF6F00)](https://github.com/Nathan-Studios/DjavaLauncher/releases/latest)
-[![Build](https://img.shields.io/badge/Build-2.10_Dynamic-00C853?style=for-the-badge&logo=android)](https://github.com/Nathan-Studios/DjavaLauncher)
-[![Platform](https://img.shields.io/badge/Platform-Android_8.0%2B-3DDC84?style=for-the-badge&logo=android)](https://www.android.com/)
-[![Arch](https://img.shields.io/badge/Arch-arm64--v8a%20%7C%20armeabi--v7a-FF6D00?style=for-the-badge&logo=arm&logoColor=white)](https://developer.android.com/ndk/guides/abis)
-[![API](https://img.shields.io/badge/API-26%2B-1565C0?style=for-the-badge&logo=android)](https://developer.android.com/about/versions/oreo)
-[![License](https://img.shields.io/badge/License-MIT-FF1744?style=for-the-badge&logo=opensourceinitiative)](LICENSE)
-[![Discord](https://img.shields.io/badge/Discord-Join-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/djavalauncher)
-
-<br>
-
-<img src="https://github.com/user-attachments/assets/20197d82-3046-44e2-a2ad-eea36ea756a5" width="880" style="border-radius: 16px; border: 2px solid #FF6F00;">
+> **Project**: DjavaLauncher 2.0 (GTA SA Reversed Android)  
+> **Root name**: `gtareversed`  
+> **Package**: `com.nathan.djavarp`  
+> **Version**: 1.5 (code 135)  
+> **Min SDK**: 26 | **Target SDK**: 36 | **Compile SDK**: 36  
 
 ---
 
-<br>
+## Table of Contents
 
-</div>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Latest_Build-v2.10_Dynamic-FF6F00?style=for-the-badge&logo=github&logoColor=white">
-  <img src="https://img.shields.io/badge/Min_SDK-Android_8.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white">
-  <br>
-  <img src="https://img.shields.io/badge/ABI-arm64--v8a_%7C_armeabi--v7a-1565C0?style=for-the-badge&logo=arm&logoColor=white">
-  <img src="https://img.shields.io/badge/Native_Core-C%2B%2B20_·_Shadowhook-00C853?style=for-the-badge&logo=cplusplus&logoColor=white">
-</p>
-
-<br>
-
----
-
-## 📋 Table of Contents
-
-- [📥 Download](#-download)
-- [✨ Features](#-features)
-- [⚙️ Technical Stack](#%EF%B8%8F-technical-stack)
-- [📰 Announcements](#-announcements)
-- [📜 Changelog](#-changelog)
-- [📸 Screenshots](#-screenshots)
-- [🚀 Getting Started](#-getting-started)
-- [🤝 Credits](#-credits)
+1. [Overview](#1-overview)
+2. [Architecture](#2-architecture)
+3. [Build System](#3-build-system)
+4. [ABI & Native Libraries](#4-abi--native-libraries)
+5. [Native (C++) Layer](#5-native-c-layer)
+6. [Java/Kotlin Layer](#6-javakotlin-layer)
+7. [Package Reference](#7-package-reference)
+8. [Android Resources](#8-android-resources)
+9. [Dependencies](#9-dependencies)
+10. [Permissions & Manifest](#10-permissions--manifest)
+11. [ProGuard & Obfuscation](#11-proguard--obfuscation)
+12. [Assets](#12-assets)
+13. [Networking & API](#13-networking--api)
+14. [Firebase Services](#14-firebase-services)
+15. [Game Data & Downloader](#15-game-data--downloader)
+16. [Crash Analysis](#16-crash-analysis)
+17. [Development Workflow](#17-development-workflow)
 
 ---
 
-## 📥 Download
+## 1. Overview
 
-<div align="center">
+DjavaLauncher 2.0 is a **reverse-engineered SA-MP (San Andreas Multiplayer) Mobile launcher/client** for GTA: San Andreas on Android. It patches the original GTASA game process to inject multiplayer capabilities using native code hooking (Shadowhook), custom UI overlays, and an Android-native launcher UI built with Material Design 3.
 
-### Latest Release
-
-[![Download APK](https://img.shields.io/badge/⬇️_Download_APK-FF6F00?style=for-the-badge&logo=android&logoColor=white&labelColor=1a1a2e)](https://github.com/Nathan-Studios/DjavaLauncher/releases/latest)
-[![View All Releases](https://img.shields.io/badge/📦_All_Releases-1565C0?style=for-the-badge&logo=github&logoColor=white&labelColor=1a1a2e)](https://github.com/Nathan-Studios/DjavaLauncher/releases)
-[![Discord](https://img.shields.io/badge/💬_Community-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=1a1a2e)](https://discord.gg/djavalauncher)
-
-</div>
-
-> **Note:** This is the official download center for **DjavaLauncher-2.0**. The client source remains closed-source, distributed through this distribution hub.
+### Key Capabilities
+- Launch GTASA with injected SA-MP client
+- Browse and connect to multiplayer servers
+- Download game data assets
+- Chat overlay with custom keyboard
+- Dialog/menu system for server interactions
+- Server favorites management
 
 ---
 
-## ✨ Features
+## 2. Architecture
 
-<details open>
-<summary><b>🎨 Modern Launcher (Material 3 UI)</b></summary>
-<br>
-
-| Feature | Description | Status |
-|:--------|:------------|:------:|
-| **Material 3 Design** | Clean, modern interface following Android 14+ design standards | ✅ Stable |
-| **Responsive Bottom Nav** | Adaptive navigation with Material 3 icons | ✅ Stable |
-| **Dynamic Credits Dialog** | Interactive credits with animated content | ✅ Stable |
-| **Donate Dialog** | In-app support dialog with multiple payment options | ✅ Stable |
-| **Auto-Downloader** | Download & verify game assets automatically | ✅ Stable |
-| **Server Management** | Add, manage, connect to SA:MP servers | ✅ Stable |
-| **Flexible Settings** | Deep customization for launcher & game client | ✅ Stable |
-| **Forced Update System** | Inline APK download & install with version validation | ✅ Stable |
-| **Custom Storage Path** | `/Android/DjavaLauncher/files/` with toggle | ✅ Stable |
-
-</details>
-
-<details>
-<summary><b>🎮 High-Performance Game Client</b></summary>
-<br>
-
-| Feature | Description | Status |
-|:--------|:------------|:------:|
-| **OpenGL Reflections** | Real-time vehicle reflections | ✅ Stable |
-| **Water Shader** | Enhanced water rendering | ✅ Stable |
-| **Custom SkyBox** | High-quality sky textures | ✅ Stable |
-| **Real-Time Shadows** | Dynamic shadow system (ported from peak-reference) | ✅ Stable |
-| **Time Cycle** | Advanced time-of-day lighting | ✅ Stable |
-| **Weather System** | Enhanced weather effects | ✅ Stable |
-| **Render Buffer** | Optimized rendering pipeline | ✅ Stable |
-| **Performance Tweaks** | Disabled `CCorona` for max FPS | ✅ Stable |
-
-</details>
-
-<details>
-<summary><b>🛠️ Enhanced Gameplay</b></summary>
-<br>
-
-| Feature | Description | Status |
-|:--------|:------------|:------:|
-| **Voice Chat** | Built-in Opus codec voice communication | ✅ Stable |
-| **ImGui UI** | Professional in-game menus, chat, scoreboard | ✅ Stable |
-| **Java Chat Window** | RecyclerView chat window (peak-reference style) | ✅ Stable |
-| **Java Dialog System** | Peak-reference style dialog UI | ✅ Stable |
-| **Multi-Touch Support** | Mobile-optimized controls | ✅ Stable |
-| **Custom Keyboard** | Optimized input for chat & commands | ✅ Stable |
-| **Kick Button** | Native kick action support | ✅ Stable |
-| **Crosshair Overlay** | In-game crosshair rendering | ✅ Stable |
-| **Attached Object Fix** | Correct rotation & flickering fixes | ✅ Stable |
-
-</details>
-
-<details>
-<summary><b>🔧 Advanced Technical Features</b></summary>
-<br>
-
-| Feature | Description | Status |
-|:--------|:------------|:------:|
-| **XOR Obfuscated Versioning** | Unified version system with obfuscation | ✅ Stable |
-| **Crashlytics NDK** | Native crash reporting via Firebase | ✅ Stable |
-| **Texture DB System** | Texture database with fallback handling | ✅ Stable |
-| **Procedural Plate Textures** | Auto-generated license plates | ✅ Stable |
-| **RLE Decompression** | Mali GPU crash fix, 64-bit pointer safe | ✅ Stable |
-| **RakNet Networking** | Low-latency synchronization | ✅ Stable |
-| **BASS Audio** | High-fidelity sound with SSL support | ✅ Stable |
-| **Custom Storage** | External storage with permission handling | ✅ Stable |
-
-</details>
-
----
-
-## ⚙️ Technical Stack
-
-<div align="center">
-
-```mermaid
-graph LR
-    A[Android App] --> B[Java/Kotlin UI]
-    A --> C[C++ Native Core]
-    B --> D[Material 3 Design]
-    B --> E[Firebase Services]
-    C --> F[Shadowhook]
-    C --> G[RakNet]
-    C --> H[ImGui]
-    C --> I[BASS Audio]
-    C --> J[Opus Codec]
-    E --> K[Analytics]
-    E --> L[Crashlytics]
-    E --> M[Messaging]
+```
+┌─────────────────────────────────────────────────────────┐
+│                   Android Application                    │
+│                    (:app module)                         │
+│                    com.nathan.djavarp                    │
+├─────────────────────┬───────────────────────────────────┤
+│   Launcher Layer     │         Game Layer                │
+│  (Java/Android UI)   │       (Java Bridge)               │
+│                      │                                   │
+│  SplashScreenActivity│  SAMP.java (extends GTASA)        │
+│  MainActivity        │  Game UI Overlays                 │
+│  Fragments           │  ChatWindow / DialogManager       │
+│  Settings/Server UI  │  CustomKeyboard / LoadingScreen   │
+├─────────────────────┼───────────────────────────────────┤
+│               Native Layer (C++/CMake)                   │
+│                                                          │
+│  samp/  ← SA-MP Client Implementation                   │
+│  opus/  ← Audio Codec (Opus)                            │
+│  Shadowhook ← ByteDance Function Hooking                 │
+│  BASS Audio Library                                      │
+│  GlossHook / EGL / GLESv3                                │
+├─────────────────────┼───────────────────────────────────┤
+│               Pre-built JNI Libraries                    │
+│                                                          │
+│  libGTASA.so      ← Patched game library                 │
+│  libSCAnd.so      ← Social Club native                   │
+│  libOpenAL*.so    ← OpenAL audio                         │
+│  libImmEmulatorJ.so ← Input method (armeabi-v7a only)    │
+└─────────────────────┴───────────────────────────────────┘
 ```
 
-</div>
-
-| Layer | Technology | Purpose |
-|:------|:-----------|:--------|
-| **UI Layer** | Kotlin + Java + Material 3 | Splash, Main, Game activities |
-| **Native Layer** | C++20 · CMake 3.12+ | Game hooks, rendering, networking |
-| **Hooking** | Shadowhook 1.0.9 (ByteDance) | Function interception |
-| **Networking** | RakNet (SA:MP 0.3.7) | Game synchronization |
-| **Audio** | BASS · BASS_SSL · Opus | Sound & voice chat |
-| **Security** | Paranoid + XOR Obfuscation | Code protection |
-| **Analytics** | Firebase BOM 33.6.0 | Crash reporting, analytics |
-| **Rendering** | OpenGL ES 3.0 | Graphics & shaders |
-
----
-
-## 📰 Announcements
-
-<div align="center">
-
-| Date | Title | Description |
-|:----:|:------|:------------|
-| 🆕 **19 May 2026** | **Welcome to Djava Launcher!** | Experience SA:MP Mobile with modern features, high performance, and Material 3 design. |
-| 🔄 **18 May 2026** | **Client Update v1.0.5** | UI system overhaul and audio bug fixes. Update to the latest version! |
-| 🎉 **17 May 2026** | **Community Weekly Event** | Djava Roleplay server weekend events. Check Discord for details! |
-
-</div>
+### Activity Flow
+```
+SplashScreenActivity (portrait, LAUNCHER)
+        │
+        ▼
+  MainActivity (portrait, bottom-nav host)
+        │  ┌── HomeFragment
+        │  ├── ServerFragment
+        │  ├── DownloadFragment
+        │  └── SettingsFragment
+        │
+        ▼
+  SAMP (extends GTASA) (landscape, game activity)
+        │
+        ├── ChatWindow overlay
+        ├── CustomKeyboard overlay
+        ├── DialogManager (server dialogs)
+        ├── TabManager (player list, etc.)
+        └── LoadingScreen overlay
+```
 
 ---
 
-## 📜 Changelog
+## 3. Build System
 
-### 🏗️ Dev Branch — Recent Milestones
+### Gradle Setup
 
-<details open>
-<summary><b>🔖 v1.4 (Build 134)</b> — Latest</summary>
+| Property | Value |
+|----------|-------|
+| **Android Gradle Plugin** | 8.13.2 (settings) / 8.2.1 (actual) |
+| **Gradle Wrapper** | 8.13 |
+| **NDK** | 26.2.11394342 |
+| **Kotlin** | No — pure Java + C++ |
+| **Build Features** | prefab, viewBinding, buildConfig |
 
-| Date | Commit | Description |
-|:----:|:------|:------------|
-| 2026-06-04 | `109f5d8` | 🎨 Material 3 icons, responsive bottom nav, dynamic credits, donate dialog |
-| 2026-06-03 | `24b2e84` | 🐛 Fix crash: texture DB recursion + menu DB registration |
-| 2026-06-03 | `728762e` | 🔄 Restore texture formats, CRenderTarget, SAMP.IMG/SAMPCOL.IMG |
-| 2026-06-03 | `34951a8` | 👕 Fix clothes texture crash with fallback system |
-| 2026-06-03 | `15ad224` | 🚗 Fix plate texture crash — unregister DB after lookup |
-| 2026-06-03 | `fbfccde` | 🔤 Fix font crash — guard with access() check |
-| 2026-06-03 | `a64aa79` | 🏷️ Procedural fallback plate textures |
-| 2026-06-03 | `d71a6f8` | 💾 Custom storage path implementation |
-| 2026-06-03 | `ea97f2c` | 📦 Port texture & plate system from peak-reference |
-
-</details>
-
-<details>
-<summary><b>🔖 v1.3 (Build 133)</b></summary>
-
-| Date | Commit | Description |
-|:----:|:------|:------------|
-| 2026-06-02 | `cab03c5` | 🐛 Fix loading loop — remove early native lib loading |
-| 2026-06-02 | `5be2ff0` | 🔐 Unified versioning with XOR obfuscation |
-| 2026-06-02 | `3e67f1c` | 📲 Update system robustness — APK validation |
-| 2026-06-02 | `3d57aff` | 🎮 Fix GTA buttons unresponsive (peak-reference style) |
-
-</details>
-
-<details>
-<summary><b>🔖 v1.2 (Build 132)</b></summary>
-
-| Date | Commit | Description |
-|:----:|:------|:------------|
-| 2026-06-02 | `79bfa55` | ⬇️ Forced update system with inline APK download |
-| 2026-06-01 | `03f2caf` | 🖱️ Fix touch events — consumed-flag approach |
-| 2026-06-01 | `9782f6d` | 🔄 Fix attached objects rotation (degrees vs radians) |
-| 2026-06-01 | `432293e` | 💬 Fix chat/tab restore after unpause |
-| 2026-06-01 | `aed92cd` | ✅ Fix dialog select behavior |
-| 2026-06-01 | `79b0ba0` | 🌓 Port Shadow, TimeCycle, WaterLevel, Weather |
-| 2026-06-01 | `1bc1225` | 🖼️ Fix HUD texture bugs via off-screen displacement |
-| 2026-06-01 | `638764c` | 🔑 Update keystore, Firebase, API endpoints |
-
-</details>
-
-<details>
-<summary><b>🔖 v1.1 (Build 131)</b></summary>
-
-| Date | Commit | Description |
-|:----:|:------|:------------|
-| 2026-05-31 | `df24476` | 🎬 Fix attached object flickering |
-| 2026-05-31 | `13f1d29` | ⌨️ Fix chat keyboard & dialog input |
-| 2026-05-31 | `46c91a9` | 💬 Replace dialog system (peak-reference) |
-| 2026-05-31 | `ca5e31a` | 📱 Migrate chat to Java with keyboard fix |
-| 2026-05-30 | `81cd4d0` | 🔄 Replace ImGui chat with RecyclerView |
-| 2026-05-29 | `850cbce` | 💧 Watermark v1.04 + dynamic chat sizing |
-
-</details>
-
-<details>
-<summary><b>🔖 v1.0 — Initial Release</b></summary>
-
-| Date | Commit | Description |
-|:----:|:------|:------------|
-| 2026-05-29 | `2acb5fa` | 🔧 RLE decompression + LoadFullTexture hook |
-| 2026-05-29 | `96c6438` | 💾 Custom storage path implementation |
-| 2026-05-29 | `286546a` | 🛡️ Android 14+ compatibility fixes |
-| 2026-05-25 | `98dff73` | 🔧 Mali GPU crash fix (64-bit pointer safety) |
-| 2026-05-24 | `9066900` | 📦 Unified datagame.zip download |
-| 2026-05-23 | `db22409` | 🔗 Open.mp dialog compatibility |
-| 2026-05-21 | `d7fa5c2` | 🌓 Re-enable real-time shadows |
-| 2026-05-20 | `3da024a` | 🎨 Material 3 UI Migration |
-
-</details>
-
-</details>
-
-<details>
-<summary><b>📜 Full Git History Reference</b></summary>
-
-<br>
-
-<details>
-<summary>🎨 UI/UX</summary>
-
-- Material 3 UI Migration (`3da024a`)
-- Dynamic credits & donate dialog (`109f5d8`)
-- Responsive bottom nav with M3 icons (`109f5d8`)
-- Splash & update screen redesign
-- Java RecyclerView chat window (`81cd4d0`)
-- Peak-reference style dialog system (`46c91a9`)
-</details>
-
-<details>
-<summary>🐛 Crash Fixes</summary>
-
-- Texture DB recursion crash (`24b2e84`)
-- Clothes texture crash (`34951a8`)
-- Plate texture crash (`15ad224`)
-- Font crash — access() guard (`fbfccde`)
-- Login crash resolution (`8b306ad`)
-- RLE decompression Mali GPU fix (`98dff73`)
-- Open.mp dialog compatibility (`db22409`)
-- Touch events consumed-flag fix (`03f2caf`)
-</details>
-
-<details>
-<summary>🔧 Native Improvements</summary>
-
-- Shadowhook migration (`a3fe7f8`)
-- GlossHook integration (`a6dac2a`)
-- Custom storage path (`d71a6f8`)
-- XOR obfuscated versioning (`5be2ff0`)
-- Texture format & plate system (`ea97f2c`)
-- BASS audio + SSL support (`17d59f3`)
-</details>
-
-<details>
-<summary>🎮 Graphics</summary>
-
-- Port Shadow/TimeCycle/WaterLevel (`79b0ba0`)
-- Real-time shadows re-enabled (`d7fa5c2`)
-- OpenGL Reflections
-- Custom SkyBox
-- HUD texture off-screen fix (`1bc1225`)
-</details>
-
-<details>
-<summary>📲 Distribution</summary>
-
-- Forced update system (`79bfa55`)
-- Unified datagame.zip (`9066900`)
-- APK version validation (`3e67f1c`)
-- Auto-copy to Laragon (`3ae989a`)
-</details>
-
-<details>
-<summary>🏗️ Infrastructure</summary>
-
-- Firebase BOM 33.6.0 (`45d98be`)
-- Crashlytics NDK (`1b3c5fc`)
-- ABI splits (`b79167b`)
-- NDK 26.2 / C++20 (`ccaf385`)
-</details>
-
-</details>
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-
-| Dashboard | In-Game UI | Settings |
-|:---------:|:----------:|:--------:|
-| <img src="https://github.com/user-attachments/assets/20197d82-3046-44e2-a2ad-eea36ea756a5" width="280"> | <img src="https://github.com/user-attachments/assets/dc99126c-32a7-46c8-8233-474d737ade4c" width="280"> | <img src="https://github.com/user-attachments/assets/e289bf60-023f-4f5f-a76a-8210f3311ca0" width="280"> |
-
-</div>
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- 📱 Android device running **Android 8.0 (Oreo)** or higher
-- 🎮 Legitimate copy of **Grand Theft Auto: San Andreas** (v2.00+)
-- 📶 Stable internet connection for initial asset download
-
-### Quick Installation
+### Build Commands
 
 ```bash
-# 1. Download the latest APK from our release page
-# 2. Enable "Install from Unknown Sources" on your device
-# 3. Install the APK
-# 4. Open DjavaLauncher
-# 5. Follow the on-screen prompts to download game assets
-# 6. Set your nickname in Settings
-# 7. Browse the server list and start playing!
+./gradlew assembleDebug     # Debug APK (minify=false, release signing)
+./gradlew assembleRelease   # Release APK (minify=false, release signing)
 ```
 
-### Build from Source (Contributors)
+Both build types use the **same release signing config** (`djavalauncher.jks`, alias `key0`, password `Nathan#1234`).
 
-> **Note:** The DjavaLauncher-2.0 client is closed-source. This repository only distributes pre-built releases.  
-> For development inquiries, join our [Discord](https://discord.gg/djavalauncher).
+### Post-Build
+Gradle registers a task `copy{Variant}ApksToLaragon` that automatically copies all APK outputs to `C:\laragon\www` after every successful build.
+
+### ABI Splits
+
+```kotlin
+splits {
+    abi {
+        isEnable = true
+        reset()
+        include("armeabi-v7a", "arm64-v8a")
+        isUniversalApk = false
+    }
+}
+```
+
+Only two ABIs are built — no x86/x86_64, no universal APK.
+
+### Gradle Properties
+
+```properties
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+android.nonTransitiveRClass=true
+android.suppressUnsupportedCompileSdk=36
+```
+
+### Version Catalog (`gradle/libs.versions.toml`)
+
+Full dependency management via TOML catalog. Key versions:
+
+| Library | Version |
+|---------|---------|
+| appcompat | 1.6.1 |
+| material | 1.12.0 |
+| constraintlayout | 2.2.0 |
+| navigation | 2.7.7 |
+| fragment | 1.6.2 |
+| lifecycle | 2.7.0 |
+| firebase BOM | 33.6.0 |
+| shadowhook | 1.0.9 |
+| smoothbottombar | 1.7.9 |
+
+### Repositories
+- Google, Maven Central, JitPack, Gradle Plugin Portal
+- Aliyun mirrors (public, google, jcenter)
+- AppLovin artifacts
+- Sonatype snapshots
 
 ---
 
-## 🤝 Credits
+## 4. ABI & Native Libraries
 
-<div align="center">
+### Pre-built JNI Libraries (`app/src/main/jniLibs/`)
 
-### 🏆 DjavaLauncher Development Team
+| ABI | Files |
+|-----|-------|
+| `arm64-v8a/` | `libGTASA.so` (205KB), `libOpenAL64.so`, `libSCAnd.so` |
+| `armeabi-v7a/` | `libGTASA.so` (165KB), `libImmEmulatorJ.so`, `libOpenAL32.so`, `libSCAnd.so` |
 
-</div>
+These are **pre-compiled binaries** — not built by the CMake project. They include the patched GTASA library that enables SA-MP functionality.
 
-| Role | Contributor | Contributions |
-|:----:|:------------|:--------------|
-| **👑 Lead Maintainer** | [NathanKanaeru](https://github.com/NathanKanaeru) | Overall development, modern UI/UX, maintenance |
-| **⚙️ Core Developer** | [x1y2z](https://github.com/x1y2z) | Original client architecture |
-| **🎨 Graphics Engineer** | [kuzia15](https://github.com/kuzia15) | OpenGL Reflections, WaterShader, core improvements |
-| **☁️ Rendering Specialist** | [psychobye](https://github.com/psychobye) | Custom SkyBox implementation |
-| **🛠️ Systems Developer** | [blazervng](https://github.com/blazervng) | HUD, RPC systems, graphics optimization, bug fixes |
-
-### 🙏 Special Thanks
-
-- **peak-reference** — Reference implementation for UI, rendering, and gameplay features
-- **SA:MP Mobile Community** — Continuous support and feedback
-- **Open.mp Team** — Multiplayer protocol compatibility
-- **ByteDance** — Shadowhook library
-- **Un4seen Developments** — BASS Audio Library
+### Java Native Libraries (`app/libs/`)
+- `com.bda.controller.jar` — NVIDIA Shield controller support
 
 ---
 
-<div align="center">
+## 5. Native (C++) Layer
 
-<br>
+### CMake Structure
 
-<i>Made with ❤️ for the SA:MP Mobile Community</i><br>
-<b>DjavaLauncher © 2025-2026 Nathan Studios</b>
+```
+app/src/main/cpp/
+├── CMakeLists.txt          ← Root: links shadowhook, adds subdirectories
+├── opus/                   ← Opus audio codec (45 files, optimized with -O3)
+│   └── include/
+└── samp/                   ← SA-MP client implementation (26 source files)
+    └── CMakeLists.txt      ← Main build config (66 lines)
+```
 
-<br><br>
+### SA-MP Submodule (`app/src/main/cpp/samp/`)
 
-[![GitHub Stars](https://img.shields.io/github/stars/Nathan-Studios/DjavaLauncher?style=social)](https://github.com/Nathan-Studios/DjavaLauncher)
-[![GitHub Forks](https://img.shields.io/github/forks/Nathan-Studios/DjavaLauncher?style=social)](https://github.com/Nathan-Studios/DjavaLauncher)
+**Key build details:**
+- **Language**: C++20
+- **Arch detection**: `armeabi-v7a` → `VER_x32=true`, `arm64-v8a` → `VER_x32=false`
+- **Sources**: Recursive `GLOB_RECURSE` over `.c*` files (up to 9 levels deep)
+- **Linking**:
+  - `log`, `android`, `EGL`, `GLESv3`
+  - `opus` (audio codec)
+  - `shadowhook::shadowhook` (function hooking)
+  - `libbass.so`, `libbass_ssl.so` (BASS audio library)
+  - `libGlossHook.a`, `libGlossHook.so`
 
-<br>
+**Visibility:**
+- Debug: `-fvisibility=default`
+- Release: `-fvisibility=hidden`
 
-</div>
+**Linker flag:** `-Wl,-z,max-page-size=16384`
+
+### Dependencies
+- **Shadowhook** (ByteDance) — Android PLT hook library, required via `find_package(shadowhook REQUIRED CONFIG)` and prefab
+- **BASS** — audio library for streaming and playback
+- **BASS_SSL** — SSL support for BASS
+- **GlossHook** — additional hooking library
+- **Opus** — low-latency audio codec for VoIP
+
+---
+
+## 6. Java/Kotlin Layer
+
+### Entry Points
+
+| Class | Role | Screen Orientation | Exported |
+|-------|------|-------------------|----------|
+| `SplashScreenActivity` | Launcher activity, app entry point | portrait | Yes |
+| `MainActivity` | Bottom-navigation host container | portrait | No |
+| `UpdateActivity` | In-app updater screen | portrait | No |
+| `SAMP` (extends `GTASA`) | Game activity, native bridge | landscape | Yes |
+| `DjavaApplication` | Application subclass, initialization | — | — |
+
+### Activity Details
+
+#### `SplashScreenActivity`
+- **Path**: `com.nathan.djavarp.launcher.activity.SplashScreenActivity`
+- **Intent filter**: `MAIN`/`LAUNCHER`
+- **Theme**: `Theme.DjavaLauncher`
+- Transitions to `MainActivity` after initialization
+
+#### `MainActivity`
+- **Path**: `com.nathan.djavarp.launcher.activity.MainActivity`
+- **Theme**: `Theme.DjavaLauncher`
+- Uses `SmoothBottomBar` for navigation
+- Hosts 4 fragments: Home, Server, Download, Settings
+- Not exported (internal activity)
+
+#### `SAMP`
+- **Path**: `com.nathan.djavarp.game.SAMP`
+- **Extends**: `com.nathan.djavarp.game.GTASA`
+- **Orientation**: landscape, no action bar
+- **Launch mode**: `singleTask`
+- **Config changes**: keyboard, orientation, screenSize, uiMode
+- **Window soft input**: `adjustPan`
+- **Exported**: true (launchable from game launcher)
+- **Obfuscated**: via Paranoid `@Obfuscate` annotation
+
+#### `DjavaApplication`
+- **Path**: `com.nathan.djavarp.launcher.other.DjavaApplication`
+- Initializes PRDownloader library
+- App-level initialization
+
+---
+
+## 7. Package Reference
+
+### `com.nathan.djavarp.launcher.activity`
+| Class | Description |
+|-------|-------------|
+| `SplashScreenActivity` | Splash screen / launcher entry |
+| `MainActivity` | Main bottom-nav host |
+| `UpdateActivity` | App update screen |
+
+### `com.nathan.djavarp.launcher.fragment`
+| Class | Description |
+|-------|-------------|
+| `HomeFragment` | Home screen with announcements |
+| `ServerFragment` | Server browser/list |
+| `DownloadFragment` | Game data download manager |
+| `SettingsFragment` | App settings |
+
+### `com.nathan.djavarp.launcher.adapter`
+| Class | Description |
+|-------|-------------|
+| `AnnouncementAdapter` | RecyclerView adapter for announcements |
+| `ChangelogAdapter` | RecyclerView adapter for changelog |
+| `ServerAdapter` | RecyclerView adapter for server list |
+
+### `com.nathan.djavarp.launcher.data`
+| Class | Description |
+|-------|-------------|
+| `FavoritesInfo` | Favorited server data model |
+
+### `com.nathan.djavarp.launcher.model`
+| Class | Description |
+|-------|-------------|
+| `Announcement` | Announcement data model |
+| `Changelog` | Changelog data model |
+| `ServerConfig` | Server configuration model |
+| `ServerInfo` | Server info model (IP, port, players, etc.) |
+
+### `com.nathan.djavarp.launcher.other`
+| Class | Description |
+|-------|-------------|
+| `CustomEditText` | Custom styled EditText |
+| `CustomRecyclerView` | Custom styled RecyclerView |
+| `DjavaApplication` | Application init |
+| `DownloadAdapter` | Download queue adapter |
+| `DownloadModel` | Download item model |
+| `Lists` | Static data / list utilities |
+| `UnZipCallback` | ZIP extraction callback interface |
+| `Util` | General utilities |
+
+### `com.nathan.djavarp.launcher.service`
+| Class | Description |
+|-------|-------------|
+| `DownloadService` | Foreground service for file downloads |
+
+### `com.nathan.djavarp.launcher.util`
+| Class | Description |
+|-------|-------------|
+| `ApiConfig` | API endpoints configuration |
+| `AppUpdateManager` | Check and apply app updates |
+| `AppVersion` | Version info utility |
+| `ClickEffectUtil` | Touch feedback effects |
+| `ConfigValidator` | Server settings validation |
+| `DownloadStore` | Download state persistence |
+| `GPUUtil` | GPU info detection |
+| `SampQuery` | SA-MP server query protocol |
+| `ServerConnector` | Server connection management |
+| `ServerStore` | Server list persistence |
+| `SettingsIO` | Settings file I/O (settings.ini) |
+| `SignatureChecker` | APK signature verification |
+| `StorageUtil` | Storage path utilities |
+
+### `com.nathan.djavarp.game`
+| Class | Description |
+|-------|-------------|
+| `GTASA` | Base game activity class |
+| `SAMP` | Main game bridge (obfuscated) |
+| `HeightProvider` | Screen height utility for overlays |
+
+### `com.nathan.djavarp.game.ui`
+| Class | Description |
+|-------|-------------|
+| `AttachEdit` | Attached edit text for chat input |
+| `ChatWindow` | SA-MP chat overlay |
+| `CustomKeyboard` | Custom on-screen keyboard |
+| `FadingEdgeLayout` | Layout with fading edge effect |
+| `LoadingScreen` | Loading overlay |
+| `StrokedTextView` | Text view with stroke |
+
+### `com.nathan.djavarp.game.ui.dialog`
+| Class | Description |
+|-------|-------------|
+| `DialogAdapter` | Server dialog list adapter |
+| `DialogManager` | Dialog display manager |
+
+### `com.nathan.djavarp.game.ui.tab`
+| Class | Description |
+|-------|-------------|
+| `PlayerData` | Player info data model |
+| `TabAdapter` | Tab list adapter |
+| `TabManager` | Tab UI manager |
+
+### `com.nvidia.devtech.*`
+NVIDIA Shield TV compatibility layer:
+- `NvEventQueueActivity` — Base activity with event queue
+- Other NVIDIA-specific helpers
+
+### `com.wardrumstudios.utils.*`
+Wardrum Studios utilities:
+- Billing, gamepad input, HTTP networking, media playback
+- Used by the original GTASA engine
+
+---
+
+## 8. Android Resources
+
+### Layouts (`res/layout/`) — 28 files
+
+| Layout | Purpose |
+|--------|---------|
+| `activity_main.xml` | Main bottom-nav container |
+| `activity_splash.xml` | Splash screen |
+| `activity_update.xml` | Update activity |
+| `fragment_home.xml` | Home screen |
+| `fragment_server.xml` | Server browser |
+| `fragment_download.xml` | Download manager |
+| `fragment_settings.xml` | Settings screen |
+| `samp_launcher.xml` | SAMP game activity |
+| `chat_dialog.xml` | Chat window overlay |
+| `layout_loading.xml` | Loading screen |
+| `dialog_list.xml` | Server dialog list |
+| 16+ additional layouts for cards, items, dialogs |
+
+### Drawables (`res/drawable/`) — 68 files
+
+Includes:
+- M3 icon vectors: `ic_home_m3.xml`, `ic_server_m3.xml`, `ic_download_m3.xml`, `ic_settings_m3.xml`
+- Brand icons: Discord, GitHub, etc.
+- Chat/UI backgrounds, dialog styles, button states
+- Loading screen graphics, HUD elements, tab backgrounds
+- Splash/logo images
+
+### Themes & Styles (`res/values/`)
+
+**`themes.xml`** — Material 3 dark theme:
+- `Theme.DjavaLauncher` — DayNight, NoActionBar, Material 3
+- Legacy `Theme.SAMPLauncher` — for backward compat
+- Bottom nav styling, button/dialog/card styles
+
+**`style.xml`** — Material 3 type scale:
+- Display/Label/Title/Body/Headline — all sizes (Large/Medium/Small)
+- Uses `@font/djava_material` (PT Root UI)
+- Card styles: Elevated, Filled, Outlined
+- Chip styles, settings section headers
+
+**`colors.xml`** — 214 color resources:
+- Cyber Green `#00E676` (#00E676)
+- OLED Black `#000000` (#000000)
+- Material 3 baseline palette
+- Game-specific colors (chat, HUD, dialog)
+- Bottom nav active/inactive colors
+
+**`strings.xml`** — 118 string resources:
+- Indonesian (id) locale
+- UI labels for home, server, download, settings
+- Loading screen messages, about section
+
+**`dimens.xml`** — 42 dimension resources:
+- M3 spacing scale (4dp to 64dp)
+- Corner sizes (small, medium, large, full)
+- Icon sizes (16dp to 120dp)
+- Bottom nav dimensions
+- Card elevation levels (1–5)
+
+### Fonts (`res/font/`) — 45 files
+
+| Font Family | Styles |
+|-------------|--------|
+| Montserrat | Regular, Medium, SemiBold, Bold, ExtraBold |
+| PT Root UI | Regular, Medium, Bold (`djava_material`) |
+| DIN Pro | Regular, Medium, Bold, Black |
+| Roboto | Regular, Medium, Bold |
+| Akrobat | Regular, SemiBold, Bold, ExtraBold |
+| Bebas Neue | Regular |
+| Plus Jakarta Sans | Regular, Medium, Bold, ExtraBold |
+
+### Menu (`res/menu/`)
+- `bottom_nav_menu.xml` — 4 items: Home, Server, Download, Settings
+
+### Raw Resources (`res/raw/`) — 8 files
+- MP3 audio files
+- JSON HUD configuration files
+- TTF font file
+
+### XML Config (`res/xml/`)
+- `network_security_config.xml` — Allows cleartext traffic
+- `provider_paths.xml` — FileProvider paths
+
+---
+
+## 9. Dependencies
+
+### AndroidX
+| Dependency | Version |
+|------------|---------|
+| appcompat | 1.6.1 |
+| material (MDC) | 1.12.0 |
+| constraintlayout | 2.2.0 |
+| gridlayout | 1.0.0 |
+| recyclerview | 1.3.2 |
+| viewpager2 | 1.1.0 |
+| fragment | 1.6.2 |
+| swiperefreshlayout | 1.1.0 |
+| navigation-fragment | 2.7.7 |
+| navigation-ui | 2.7.7 |
+| lifecycle-runtime | 2.7.0 |
+| lifecycle-viewmodel | 2.7.0 |
+| lifecycle-process | 2.7.0 |
+| multiDexEnabled | true |
+
+### Firebase (BOM 33.6.0)
+| Dependency | Version (in BOM) |
+|------------|-----------------|
+| firebase-analytics | 21.2.0 |
+| firebase-crashlytics-ndk | 19.2.0 |
+| firebase-messaging | 23.1.1 |
+
+### Third-Party
+| Dependency | Version | Purpose |
+|------------|---------|---------|
+| PRDownloader | 0.6.0 | File download manager |
+| Volley | 1.2.1 | HTTP networking |
+| SDP (intuit) | 1.1.0 | Screen-size adaptive dimensions |
+| ini4j | 0.5.4 | INI file parsing (settings.ini) |
+| Glide | 4.13.0 | Image loading |
+| Shadowhook | 1.0.9 | Native function hooking (prefab) |
+| SmoothBottomBar | 1.7.9 | Bottom navigation bar |
+| Material Icon Library | 1.1.5 | Material Design icons |
+| Retrofit2 + Gson | 2.1.0 | REST API client |
+| AutoImageSlider | 1.4.0 | Image carousel |
+| AndroidP7zip | 1.7.2 | 7z extraction |
+| un7zip | 1.7.0 | 7z extraction utility |
+| Paranoid | 0.3.14 | Obfuscation plugin |
+
+### Local Libraries
+| File | Purpose |
+|------|---------|
+| `libs/com.bda.controller.jar` | NVIDIA Shield controller API |
+
+---
+
+## 10. Permissions & Manifest
+
+### Permissions (22 total)
+
+```xml
+<uses-permission android:name="INSTALL_PACKAGES" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<uses-permission android:name="android.permission.WAKE_LOCK" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.ACCESS_ALL_DOWNLOADS" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+```
+
+### Features
+```xml
+<uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+<uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+<uses-feature android:name="android.software.leanback" android:required="false" />
+<uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+<uses-feature android:name="android.hardware.microphone" android:required="false" />
+```
+
+OpenGL ES 2.0 is **required**. Touchscreen, leanback, Bluetooth, microphone are optional.
+
+### Application Flags
+- `gwpAsanMode="always"` — Guard Page heap detection
+- `requestLegacyExternalStorage="true"` — Legacy storage access
+- `isGame="true"` — Game category
+- `largeHeap="true"` — Large heap for game
+- `usesCleartextTraffic="true"` — Allow HTTP
+- `hardwareAccelerated="true"` — Hardware acceleration
+- `networkSecurityConfig` — Custom network config
+
+### Components
+- **4 Activities**: SplashScreenActivity (LAUNCHER), MainActivity, UpdateActivity, SAMP (game, exported)
+- **1 Service**: DownloadService (foreground, dataSync type)
+- **1 Provider**: FileProvider (APK sharing)
+
+---
+
+## 11. ProGuard & Obfuscation
+
+### ProGuard Rules (`app/proguard-rules.pro`)
+
+```pro
+-keep class com.nvidia.devtech.* { *; }
+-keep class com.wardrumstudios.utils.* { *; }
+-keep class com.nathan.djavarp.game.* { *; }
+-dontwarn javax.servlet.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
+```
+
+Kept classes:
+- NVIDIA Shield helpers
+- Wardrum utilities (billing, gamepad, HTTP, media)
+- Game bridge package (GTASA, SAMP, etc.)
+
+### Paranoid Obfuscation
+
+The Paranoid Gradle plugin (`com.joom.paranoid:paranoid-gradle-plugin:0.3.14`) is applied at the project level. `SAMP.java` is annotated with `@Obfuscate`, meaning its bytecode is additionally obfuscated at the instruction level.
+
+> **Note**: Stack traces from obfuscated code will NOT match source line numbers.
+
+---
+
+## 12. Assets
+
+Located at `app/src/main/assets/` — 16 entries:
+
+| Path | Description |
+|------|-------------|
+| `assetfile.txt` | Asset manifest |
+| `audio/` | Audio assets directory |
+| `data/` | Game data assets |
+| `Fonts/` | Font files |
+| `images/` | Image assets |
+| `json/` | JSON configuration files |
+| `scache_small_low.txt` | Sound cache (low quality) |
+| `scache_small.txt` | Sound cache |
+| `scache.txt` | Sound cache |
+| `social club/` | Social Club assets |
+| `socialclub/` | Social Club assets (duplicate) |
+| `stream.ini` | Streaming configuration |
+| `Text/` | Text assets directory |
+| `Textures/` | Texture assets directory |
+| `version.txt` | Version info |
+| `xml/` | XML assets |
+
+---
+
+## 13. Networking & API
+
+### Server Query (`SampQuery`)
+- Implements the SA-MP query protocol
+- Used to fetch server info (name, players, gamemode, ping)
+- Queries servers in `ServerFragment`
+
+### Server Connection (`ServerConnector`)
+- Manages connection pipeline to SA-MP servers
+- Saves/loads server list via `ServerStore`
+- Config file: `settings.ini` (parsed by `ini4j`)
+
+### API Configuration (`ApiConfig`)
+- Defines API endpoints for:
+  - Server list fetching
+  - Announcement retrieval
+  - Changelog data
+  - App update checking
+
+### Network Stack
+- **Volley** — primary HTTP request queue
+- **Retrofit2 + Gson** — REST API + JSON parsing
+- **PRDownloader** — file downloads with resume support
+- **Glide** — image loading/caching
+
+---
+
+## 14. Firebase Services
+
+### Firebase Project
+- **Project name**: `djavalauncher`
+- **Project ID**: `djavalauncher`
+- **Project number**: `344444244793`
+- **Package**: `com.nathan.djavarp`
+- **API key**: `AIzaSyACnQ13obP1jz39GOZqhDYk0LqwQMjxrD8`
+- **google-services.json**: committed to repository
+
+### Enabled Services
+- **Firebase Analytics** — Usage tracking
+- **Firebase Crashlytics NDK** — Native crash reporting (includes C++ crash detection)
+- **Firebase Cloud Messaging** — Push notifications
+
+---
+
+## 15. Game Data & Downloader
+
+### Game Data System
+- Game assets (maps, textures, audio) are downloaded separately
+- Stored in `gamedata/` directory
+- Downloaded from remote server via `DownloadFragment` and `DownloadService`
+
+### Download Service
+- **Class**: `com.nathan.djavarp.launcher.service.DownloadService`
+- **Type**: Foreground service with `dataSync` type
+- Uses PRDownloader under the hood
+- Supports download queue management via `DownloadStore` and `DownloadAdapter`
+
+### External Downloader Script
+A Python script (`downloader.py`, external to Gradle build) fetches assets from:
+```
+https://samp-mobile.shop/files.json
+```
+- Downloads to `gamedata/` directory
+- Resumes by file-size matching
+
+---
+
+## 16. Crash Analysis
+
+### Known Issue: RLEDecompress SIGSEGV (Android 14+)
+
+A documented crash occurs on Android 14+ in the `RLEDecompress` function. The crash is a `SIGSEGV` (signal 11, code 1, fault addr `0x10`) at:
+
+```
+#00  libGTASA.so (RLEDecompress+0x28)
+#01  libGTASA.so (txd_rwFoldFindChunk+0x60)
+```
+
+**Root cause**: `RLEDecompress` dereferences a null/invalid pointer when reading the next chunk in GPU texture decompression. The 4th register (`X3`/`R3`) is zero, so `[x3, #0x10]` accesses address `0x10`.
+
+**Factors**: GWP-ASan (`gwpAsanMode="always"`), Android 14+ memory management changes, potential GPU driver differences.
+
+**Workaround**: None yet — under investigation.
+
+### Other Crash Patterns
+- `libGTASA.so` in `txd_rwFoldFindChunk` context
+- Potential GPU/driver-specific crashes on newer Android versions
+
+---
+
+## 17. Development Workflow
+
+### Setup Requirements
+1. Android Studio (latest stable)
+2. Android SDK 34+
+3. NDK 26.2.11394342
+4. JDK 11+
+5. CMake 3.12+
+
+### Build Steps
+
+```bash
+# Clone with submodules
+git clone --recursive https://github.com/NathanKanaeru/DjavaLauncher-2.0.git
+
+# Debug build
+./gradlew assembleDebug
+
+# Release build
+./gradlew assembleRelease
+```
+
+### Signing
+- Keystore: `djavalauncher.jks`
+- Password: `Nathan#1234`
+- Alias: `key0`
+- Used for both debug and release builds
+
+### CI/GitHub Actions
+
+The repository includes 6 workflow files under `.github/workflows/`:
+- `push.yml` — triggered on push
+- `pull.yml` — triggered on PR events
+- `issue.yml` — triggered on issue events
+- `misc.yml` — stars, forks, wiki edits
+- `release.yml` — release events
+- `run.yml` — workflow run completion
+
+All are **webhook notifiers** (Discord notifications), not CI build pipelines.
+
+### Git Conventions
+
+**Commit format**: `Scope: Description`
+- `UI: Redesign bottom navbar, fix Add Server hint overlap bug`
+- `Fix: Resolve RLEDecompress crash on Android 14`
+- `Feature: Add server favorite management`
+- `Update: Bump dependency versions`
+
+**Author**: `NathanKanaeru` / `akumaumabar222@gmail.com`
+
+### Submodules
+- `peak-reference` — external reference repository (empty/incomplete)
+
+---
+
+## Appendix A: File Map
+
+```
+DjavaLauncher-2.0/
+├── AGENTS.md                      # AI agent reference
+├── ANALISIS_KONEKSI.md            # Connection analysis (ID)
+├── ANALISIS_UI_ASSETS.md          # UI asset analysis (ID)
+├── CRASH_ANALYSIS_RLE.md          # RLEDecompress crash analysis
+├── GEMINI.md                      # Gemini project context
+├── STRATEGI_MODLOADER.md          # Modloader strategy (ID)
+├── README.md                      # Project README
+├── CLAUDE.md                      # Claude project context
+├── build.gradle.kts               # Root build script
+├── settings.gradle.kts            # Project settings
+├── gradle.properties              # Gradle properties
+├── gradlew / gradlew.bat          # Gradle wrappers
+├── google-services.json           # Firebase config
+├── djavalauncher.jks              # Release keystore
+├── keystore_playmarket2.jks       # Play Store keystore (alt)
+├── hooks_fix.cpp                  # Hook fix source
+├── downloader.py                  # Game data downloader (external)
+│
+├── app/
+│   ├── build.gradle.kts           # App module build
+│   ├── proguard-rules.pro         # ProGuard rules
+│   ├── google-services.json       # Firebase config (copy)
+│   ├── libs/
+│   │   └── com.bda.controller.jar # NVIDIA controller API
+│   └── src/main/
+│       ├── AndroidManifest.xml
+│       ├── assets/                # Bundled game assets
+│       ├── cpp/                   # Native C++ source
+│       │   ├── CMakeLists.txt     # Root CMake
+│       │   ├── opus/              # Opus audio codec
+│       │   └── samp/              # SA-MP client implementation
+│       ├── java/com/nathan/djavarp/
+│       │   ├── game/              # Game bridge + UI overlays
+│       │   └── launcher/          # Android launcher UI
+│       ├── jniLibs/               # Pre-built .so libraries
+│       │   ├── arm64-v8a/
+│       │   └── armeabi-v7a/
+│       └── res/                   # Android resources
+│
+├── gradle/
+│   ├── libs.versions.toml         # Version catalog
+│   └── wrapper/                   # Gradle wrapper files
+│
+├── docs/
+│   └── superpowers/
+│       ├── plans/                 # Planning documents
+│       └── specs/                 # Design specifications
+│
+└── .github/workflows/             # Discord notification webhooks
+```
+
+---
+
+## Appendix B: Key Configuration Values
+
+| Parameter | Value |
+|-----------|-------|
+| applicationId | `com.nathan.djavarp` |
+| minSdk | 26 (Android 8.0) |
+| targetSdk | 36 (Android 14/15) |
+| compileSdk | 36 |
+| versionCode | 135 |
+| versionName | "1.5" |
+| NDK version | 26.2.11394342 |
+| Gradle version | 8.13 |
+| AGP version | 8.13.2 (settings) |
+| CMake min | 3.12 |
+| C++ standard | C++20 |
+| OpenGL ES | 2.0+ |
+| Keystore password | Nathan#1234 |
+| Firebase project | djavalauncher |
+
+---
+
+*Generated from project source — DjavaLauncher 2.0*
